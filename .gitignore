@@ -5,7 +5,11 @@
 
 # Next.js
 /.next/
+/.next-*/
 /out/
+
+# Codex local attachments
+/.codex-remote-attachments/
 
 # production
 /build
