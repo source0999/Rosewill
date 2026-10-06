@@ -1,7 +1,3 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  images: { formats: ["image/avif", "image/webp"] },
-};
-
+const nextConfig={output:"export",trailingSlash:true,basePath:"/Rosewill",images:{unoptimized:true}};
 export default nextConfig;
