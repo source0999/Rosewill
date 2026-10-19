@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@500;600&family=Karla:wght@400;700&display=swap");
 :root {
   --rose: #bd536e;
   --deep: #8e314b;
@@ -8,8 +8,15 @@
   --ink: #242326;
   --muted: #6c686b;
   --line: #e7dfda;
-  --serif: "Playfair Display", Georgia, serif;
-  --sans: "DM Sans", Arial, sans-serif;
+  --serif: "Alegreya", Georgia, serif;
+  --sans: "Karla", Arial, sans-serif;
+  --typography-heading-weight: 600;
+  --typography-heading-letter-spacing: -0.005em;
+  --typography-heading-line-height: 1.02;
+  --typography-body-weight: 400;
+  --typography-body-line-height: 1.64;
+  --typography-navigation-weight: 700;
+  --typography-button-weight: 700;
 }
 * {
   box-sizing: border-box;
@@ -23,7 +30,131 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: var(--sans);
-  line-height: 1.56;
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+}
+
+/* Typography Lab updates these shared tokens only in local development. */
+h1,
+h2,
+h3,
+.founder-intro,
+.brand,
+.initials {
+  font-family: var(--serif) !important;
+  font-weight: var(--typography-heading-weight) !important;
+  letter-spacing: var(--typography-heading-letter-spacing) !important;
+  line-height: var(--typography-heading-line-height) !important;
+  overflow-wrap: anywhere;
+}
+
+.links,
+.menu,
+.eyebrow,
+.button,
+button,
+input,
+select,
+textarea {
+  font-family: var(--sans) !important;
+}
+
+.links,
+.menu,
+.eyebrow {
+  font-weight: var(--typography-navigation-weight) !important;
+}
+
+.button,
+button {
+  font-weight: var(--typography-button-weight) !important;
+}
+
+.typography-lab {
+  position: fixed;
+  z-index: 100;
+  top: 124px;
+  left: 50%;
+  display: flex;
+  align-items: stretch;
+  max-width: calc(100vw - 32px);
+  overflow: hidden;
+  color: var(--ink);
+  background: rgba(255, 253, 249, 0.97);
+  border: 1px solid #d9c8c2;
+  box-shadow: 0 12px 28px rgba(49, 32, 38, 0.18);
+  transform: translateX(-50%);
+}
+
+.typography-lab-bar,
+.typography-lab-controls {
+  display: flex;
+  align-items: center;
+}
+
+.typography-lab-bar {
+  gap: 9px;
+  padding: 8px 10px 8px 13px;
+  border-right: 1px solid #dfd0cb;
+  white-space: nowrap;
+}
+
+.typography-lab-bar strong {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.typography-lab button {
+  min-width: 31px;
+  min-height: 31px;
+  padding: 0 8px;
+  border: 0;
+  color: #4a3c40;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.typography-lab-controls button + button {
+  border-left: 1px solid #eadeda;
+}
+
+.typography-lab button:hover,
+.typography-lab button:focus-visible,
+.typography-lab button.is-selected {
+  color: #fff;
+  background: var(--deep);
+  outline: 0;
+}
+
+.typography-lab button:focus-visible {
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+.typography-lab .typography-lab-collapse {
+  min-width: 24px;
+  padding: 0;
+  border: 1px solid #d8c7c1;
+  line-height: 1;
+}
+
+.typography-lab .typography-lab-reset {
+  min-width: auto;
+  color: var(--deep);
+}
+
+.typography-lab .typography-lab-reset:hover,
+.typography-lab .typography-lab-reset:focus-visible {
+  color: #fff;
+  background: var(--rose);
+}
+
+.typography-lab.is-collapsed .typography-lab-bar {
+  border-right: 0;
 }
 .scroll-to-top { position: fixed; z-index: 60; right: 24px; bottom: 24px; display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgba(255,255,255,.68); border-radius: 50%; color: #fff; background: var(--deep); box-shadow: 0 3px 7px rgba(50,30,36,.2), 0 14px 28px rgba(50,30,36,.3); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .2s ease, transform .2s ease, background-color .2s ease, box-shadow .2s ease; }
 .scroll-to-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
@@ -961,6 +1092,7 @@ footer {
 .editorial-mission h2 em { color: var(--deep); }
 .editorial-mission p:not(.eyebrow) { max-width: 580px; margin: 30px 0 25px; color: var(--muted); font-size: 1.08rem; }
 .healing-feature { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(340px, .88fr); background: #2e2b2e; color: #fff; }
+.healing-feature > * { min-width: 0; }
 .healing-media-wrap { min-height: 640px; }
 .healing-media-wrap .cinematic-video { height: 100%; }
 .healing-media-wrap .cinematic-poster, .healing-media-wrap video { object-position: center; }
@@ -1088,3 +1220,13 @@ footer {
 .contact-closing .button.ghost:hover { color: var(--deep); background: #fff; }
 @media (max-width: 900px) { .contact-hero-grid, .contact-form-layout, .leadership-card-grid { grid-template-columns: 1fr; }.contact-hero-image { max-width: 620px; width: 100%; min-height: 350px; }.contact-form-intro { max-width: 590px; }.contact-form { max-width: 720px; }.leadership-card { min-height: 0; } }
 @media (max-width: 760px) { .contact-hero, .contact-ways, .contact-form-section, .contact-leadership { padding: 72px 0; }.contact-hero h1 { font-size: clamp(3.45rem, 15vw, 4.8rem); }.contact-hero p:not(.eyebrow), .contact-section-heading > p:not(.eyebrow), .contact-form-intro > p:not(.eyebrow) { font-size: 1rem; }.contact-hero-image { min-height: 280px; box-shadow: 10px 10px 0 #f0d8dc; }.contact-page h2 { font-size: clamp(2.75rem, 12.5vw, 4rem); }.contact-section-heading { margin-bottom: 35px; }.contact-card-grid { grid-template-columns: 1fr; }.contact-card { min-height: 0; padding: 29px 25px; }.contact-card-mark { margin-bottom: 28px; }.contact-form { grid-template-columns: 1fr; padding: 27px 22px; }.form-field { grid-column: 1 / -1; }.wileen-contact { grid-template-columns: 1fr; gap: 25px; }.wileen-contact > img { width: 120px; height: 176px; }.leadership-card { padding: 32px 26px; }.contact-closing { margin: 60px 0; padding: 47px 26px; }.contact-closing .actions { display: grid; grid-template-columns: 1fr; }.contact-closing .button { min-height: 55px; } }
+
+@media (max-width: 760px) {
+  .typography-lab {
+    top: 82px;
+    max-width: calc(100vw - 20px);
+  }
+  .typography-lab-bar { padding: 7px 8px 7px 10px; }
+  .typography-lab-bar strong { font-size: 0.68rem; }
+  .typography-lab button { min-width: 28px; min-height: 29px; padding: 0 7px; }
+}
