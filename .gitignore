@@ -23,6 +23,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+rosewill-*.log
 
 # editor / OS
 .DS_Store

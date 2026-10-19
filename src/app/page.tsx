@@ -1,29 +1,147 @@
-"use client";
-
-import { useState } from "react";
+import Link from "next/link";
+import { CinematicVideo } from "@/components/CinematicVideo";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { donationUrl, upcomingEvents } from "@/lib/events";
 
 const strengths = [
-  ["⌂", "Therapeutic transitional housing", "A safe-haven home setting where young women can focus on recovery and their future."],
-  ["♡", "Trauma-focused care", "Trauma Focused Cognitive Behavioral Therapy (TF-CBT) and individualized care designed around each girl’s needs."],
-  ["⌁", "On-site support", "Most services are provided at the home, reducing the need for girls to be exposed to the public while receiving care."],
+  ["01", "Therapeutic transitional housing", "A safe-haven home setting where young women can focus on recovery and their future."],
+  ["02", "Trauma-focused care", "Trauma Focused Cognitive Behavioral Therapy (TF-CBT) and individualized care designed around each girl's needs."],
+  ["03", "On-site support", "Most services are provided at the home, reducing the need for girls to be exposed to the public while receiving care."],
 ];
 
-function Mark(){return <span className="mark" aria-hidden="true"><i/><i/><i/><i/></span>}
+export default function HomePage() {
+  const confirmedUpcomingEvents = upcomingEvents.filter((event) => !event.isSample).slice(0, 3);
 
-export default function HomePage(){
-  const [open,setOpen]=useState(false); const close=()=>setOpen(false);
-  return <>
-    <header className="site-header"><div className="shell nav"><a className="brand" href="#home" onClick={close}><Mark/><span>Rosewill<br/>Loving Arms</span></a><button className="menu" onClick={()=>setOpen(!open)} aria-label="Open menu" aria-expanded={open}>{open?"×":"☰"}</button><nav className={open?"links open":"links"}><a href="#about" onClick={close}>About</a><a href="#services" onClick={close}>Services</a><a href="#journey" onClick={close}>Our Approach</a><a href="#contact" onClick={close}>Contact</a><a className="button small" href="#give" onClick={close}>Give</a></nav></div></header>
-    <main id="home">
-      <section className="hero"><div className="shell hero-grid"><div className="hero-copy"><p className="eyebrow">Rosewill Loving Arms Covenant House</p><h1>A safe place to heal.<br/><em>A future to grow into.</em></h1><p className="intro">Rosewill Loving Arms Covenant House is creating a safe place for females ages 13–20 during some of the most vulnerable times in their lives—so they can heal, become educated, and grow into confident young women.</p><div className="actions"><a className="button" href="#give">Give today <b>→</b></a><a className="button ghost" href="#services">How we help</a></div></div><div className="hero-art"><img src="https://www.rosewill.org/images/1400/23422803/main-bg-med-NV845fxmpqQxq_N_lWFbhA.jpg" alt="Rosewill Loving Arms Covenant House"/></div></div></section>
-      <section className="mission"><div className="shell mission-grid"><p className="eyebrow">Our mission</p><h2>Rosewill Loving Arms provides a safe haven with therapeutic transitional housing for those impacted by sexual abuse, sexual assault, and sex trafficking.</h2></div></section>
-      <section id="about" className="story"><div className="shell story-grid"><div className="story-photo"><img src="https://www.rosewill.org/images/1024/23421592/20341358-D16E-4EE6-A8AC-AACF2B857886-upovkaKNq6QClz4a9YpMdg.jpeg" alt="Rosewill Loving Arms community"/></div><div><p className="eyebrow">Who we are</p><h2>A safe haven for recovery and possibility.</h2><p>Rosewill is designed as a transitional home for females who have experienced sexual abuse, sexual assault, or sexual exploitation. The home offers a unique setting where each young woman can focus on her recovery and future.</p><p className="eyebrow" style={{marginTop:28}}>Our vision</p><p>RLACH assists female youth on their healing journey throughout South Carolina, North Carolina, and Georgia.</p></div></div></section>
-      <section id="services" className="section shell"><div className="head"><div><p className="eyebrow">What sets us apart</p><h2>Care that centers her healing.</h2></div><p>Every service is designed to help young women feel safe, understood, and supported in the next stage of their lives.</p></div><div className="pillars">{strengths.map(([icon,title,text])=><article className="pillar" key={title}><span>{icon}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
-      <section id="journey" className="how"><div className="shell"><p className="eyebrow">The care journey</p><h2>Thoughtful support from the very start.</h2><div className="steps"><article><b>01</b><h3>Evaluation &amp; diagnosis</h3><p>Each young lady is evaluated and assigned by a counselor or agency.</p></article><article><b>02</b><h3>Weekly care plan</h3><p>Each girl receives a custom care plan based on her evaluation results, because no two traumas are exactly alike.</p></article><article><b>03</b><h3>Start of the care journey</h3><p>Before placement, girls complete physical and psychological evaluations to support a successful start.</p></article></div></div></section>
-      <section className="impact"><div className="shell"><p className="eyebrow">Access to support</p><div className="stats"><div><strong>7</strong><span>Days per week of availability</span></div><div><strong>24</strong><span>Hours for general response availability</span></div><div><strong>3</strong><span>States in the coverage area</span></div></div></div></section>
-      <section className="team"><div className="shell"><div className="head"><div><p className="eyebrow">Meet our founder</p><h2>Wileen Stokes</h2></div><p>Founder and advocate for people who have experienced sexual trauma.</p></div><div className="founder-real"><img src="https://www.rosewill.org/images/1024/23421592/20341358-D16E-4EE6-A8AC-AACF2B857886-upovkaKNq6QClz4a9YpMdg.jpeg" alt="Wileen Stokes and the Rosewill community"/><div><h3>Advocacy rooted in lived experience.</h3><p>Wileen is an adult survivor of childhood sexual abuse. Her greatest accomplishment is giving back to her community and advocating for victims who have experienced sexual trauma. She believes that if she overcame being a victim, so can every human being.</p></div></div></div></section>
-      <section id="give" className="shell"><div className="donate"><div><p className="eyebrow">Support Rosewill</p><h2>Help make healing possible.</h2><p>Your gift helps Rosewill create a safe, therapeutic environment for young women on their healing journey.</p></div><div className="donate-actions"><a className="button" target="_blank" href="https://cash.app/qr/$Rosewill2009">Give via Cash App →</a><a className="button ghost" href="mailto:wileen@rosewill.org">Contact Wileen</a></div></div></section>
-    </main>
-    <footer id="contact"><div className="shell footer-top"><div><a className="brand" href="#home"><Mark/><span>Rosewill<br/>Loving Arms</span></a><p>Rosewill Loving Arms Covenant House</p></div><div className="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#journey">Our Approach</a><a href="mailto:wileen@rosewill.org">wileen@rosewill.org</a><a href="tel:18647249876">864-724-9876</a><a href="https://www.facebook.com/profile.php?id=61582216172069" target="_blank">Facebook ↗</a></div></div><div className="shell reach"><strong>Reach us directly</strong><span>PO Box 645, Gray Court, SC 29645-0645</span></div><div className="shell footer-bottom">© 2026 Rosewill Loving Arms Covenant House.<span><a href="https://www.rosewill.org/privacy" target="_blank">Privacy Policy</a>　|　<a href="https://www.rosewill.org/legal-notice" target="_blank">Legal Notice</a></span></div></footer>
-  </>
+  return (
+    <>
+      <SiteHeader />
+      <main id="home" className="cinematic-home">
+        <section className="cinematic-hero">
+          <CinematicVideo
+            priority
+            src="/Rosewill/media/hero-women-walking.mp4"
+            mobileSrc="/Rosewill/media/hero-women-walking-mobile.mp4"
+            poster="/Rosewill/media/hero-women-walking-poster.webp"
+            alt="Women walking together outdoors"
+          />
+          <div className="cinematic-hero-shade" />
+          <div className="shell cinematic-hero-content">
+            <p className="eyebrow">Rosewill Loving Arms Covenant House</p>
+            <h1>A Place for Healing. <em>A Future of Hope.</em></h1>
+            <p>Rosewill Loving Arms Covenant House is creating a safe place for females ages 13-20 during some of the most vulnerable times in their lives, so they can heal, become educated, and grow into confident young women.</p>
+            <div className="actions cinematic-actions">
+              <a className="button" href="#give">Support Our Mission</a>
+              <a className="button hero-secondary" href="#about">Learn About Our Work</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="editorial-mission" id="about">
+          <div className="shell editorial-mission-grid">
+            <p className="eyebrow">Our Mission</p>
+            <div>
+              <h2>Every woman deserves the opportunity to <em>heal and thrive.</em></h2>
+              <p>Rosewill Loving Arms provides a safe haven with therapeutic transitional housing for those impacted by sexual abuse, sexual assault, and sex trafficking.</p>
+              <a className="text-link" href="#services">Explore our approach &rarr;</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="healing-feature">
+          <div className="healing-media-wrap">
+            <CinematicVideo
+              src="/Rosewill/media/healing-hillside.mp4"
+              mobileSrc="/Rosewill/media/healing-hillside-mobile.mp4"
+              poster="/Rosewill/media/healing-hillside-poster.webp"
+              alt="Women holding hands outdoors"
+            />
+          </div>
+          <div className="healing-copy">
+            <p className="eyebrow">A path forward</p>
+            <h2>Healing is the beginning. <em>Empowerment is the journey.</em></h2>
+            <p>Rosewill is designed as a transitional home for females who have experienced sexual abuse, sexual assault, or sexual exploitation. Here, each young woman can focus on her recovery and future.</p>
+            <a className="text-link" href="#journey">How care begins &rarr;</a>
+          </div>
+        </section>
+
+        <section className="what-we-do" id="services">
+          <div className="shell">
+            <div className="section-intro">
+              <p className="eyebrow">What we do</p>
+              <h2>Care that centers <em>her healing.</em></h2>
+              <p>Every service is designed to help young women feel safe, understood, and supported in the next stage of their lives.</p>
+            </div>
+            <div className="care-list">
+              {strengths.map(([number, title, text]) => (
+                <article key={title}>
+                  <span>{number}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="sisterhood-feature" id="journey">
+          <div className="shell sisterhood-grid">
+            <div className="sisterhood-copy">
+              <p className="eyebrow">Connection matters</p>
+              <h2>Stronger <em>together.</em></h2>
+              <p>Thoughtful support begins with an evaluation and a care plan shaped around each girl&apos;s needs, because no two healing journeys are exactly alike.</p>
+              <a className="text-link" href="#founder">Meet our founder &rarr;</a>
+            </div>
+            <div className="sisterhood-media-wrap">
+              <CinematicVideo
+                src="/Rosewill/media/sisterhood-embrace.mp4"
+                poster="/Rosewill/media/sisterhood-embrace-poster.webp"
+                alt="Women embracing in support"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="founder-callout" id="founder">
+          <div className="shell founder-callout-grid">
+            <p className="eyebrow">Meet our founder</p>
+            <div>
+              <h2>Advocacy rooted in <em>lived experience.</em></h2>
+              <p>Wileen Stokes is an adult survivor of childhood sexual abuse. Her greatest accomplishment is giving back to her community and advocating for victims who have experienced sexual trauma.</p>
+              <Link className="text-link" href="/team/">Meet Wileen Stokes &rarr;</Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="home-events">
+          <div className="shell">
+            <div className="home-events-panel">
+              <div>
+                <p className="eyebrow">Community engagement</p>
+                <h2>Stay <em>connected.</em></h2>
+              </div>
+            {confirmedUpcomingEvents.length ? (
+              <div className="home-event-list">
+                {confirmedUpcomingEvents.map((event) => <Link href={`/events/${event.slug}`} key={event.id}>{event.title}</Link>)}
+              </div>
+            ) : (
+              <p className="events-empty">Confirmed community events will be shared here soon.</p>
+            )}
+              <Link className="button ghost events-link" href="/events/">Explore events</Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="shell" id="give">
+          <div className="cinematic-donate">
+            <p className="eyebrow">Support Rosewill</p>
+            <h2>Your support can help create a <em>brighter tomorrow.</em></h2>
+            <p>Your gift helps Rosewill create a safe, therapeutic environment for young women on their healing journey.</p>
+            <div className="actions"><a className="button" target="_blank" href={donationUrl}>Support Our Mission</a><a className="button ghost" href="mailto:wileen@rosewill.org">Get Involved</a></div>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
 }

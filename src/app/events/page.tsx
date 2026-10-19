@@ -1,0 +1,11 @@
+import Image from "next/image";
+import Link from "next/link";
+import { EventCard } from "@/components/EventCard";
+import { EventExplorer } from "@/components/EventExplorer";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { donationUrl, pastEvents, upcomingEvents } from "@/lib/events";
+
+export default function EventsPage() {
+  return <><SiteHeader /><main className="events-page"><section className="events-hero"><div className="shell events-hero-grid"><div><p className="eyebrow">Rosewill Loving Arms • Community Events</p><h1>Gathering for a <em>Greater Purpose</em></h1><p>Join us as we bring people together, raise awareness, and create meaningful connections that strengthen our community.</p></div><div className="events-hero-image"><Image src="/Rosewill/images/events/community-connection.jpg" alt="People connecting at a community gathering" width={1200} height={820} priority /></div></div></section><section className="events-section shell"><div className="events-heading"><div><p className="eyebrow">Connect with Rosewill</p><h2>Upcoming Events</h2></div><p>Discover opportunities to connect, participate, and support our mission.</p></div><EventExplorer events={upcomingEvents} /><Link className="archive-link" href="#past-events">Explore past events ↓</Link></section><section id="past-events" className="past-events"><div className="shell"><div className="events-heading"><div><p className="eyebrow">Our archive</p><h2>Moments That Matter</h2></div><p>Look back at the gatherings, connections, and shared experiences that help move our mission forward.</p></div><div className="past-event-grid">{pastEvents.slice(0, 3).map((event) => <EventCard event={event} past key={event.id} />)}</div></div></section><section className="shell"><div className="events-donate"><div><p className="eyebrow">Support Rosewill</p><h2>Help Us Create More Meaningful Moments</h2><p>Your generosity helps Rosewill Loving Arms continue building connections, supporting individuals, and strengthening our community.</p></div><a className="button" href={donationUrl} target="_blank">Support Our Mission →</a></div></section></main><SiteFooter /></>;
+}

@@ -1,0 +1,5 @@
+import Link from "next/link";
+
+export function SiteFooter() {
+  return <footer id="contact"><div className="shell footer-top"><div><Link className="brand footer-brand" href="/"><img src="/Rosewill/logos/rosewill-logo-enhanced.png" alt="Rosewill Loving Arms Covenant House" /></Link><p>Rosewill Loving Arms Covenant House</p></div><div className="footer-links"><Link href="/#about">About</Link><Link href="/#services">Services</Link><Link href="/#journey">Our Approach</Link><Link href="/events">Events</Link><a href="mailto:wileen@rosewill.org">wileen@rosewill.org</a><a href="tel:18647249876">864-724-9876</a></div></div><div className="shell reach"><strong>Reach us directly</strong><span>PO Box 645, Gray Court, SC 29645-0645</span></div><div className="shell footer-bottom">© 2026 Rosewill Loving Arms Covenant House.<span><a href="https://www.rosewill.org/privacy" target="_blank">Privacy Policy</a>　|　<a href="https://www.rosewill.org/legal-notice" target="_blank">Legal Notice</a></span></div></footer>;
+}
